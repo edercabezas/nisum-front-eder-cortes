@@ -1,0 +1,57 @@
+
+header{
+
+
+  height: 100px;
+  //padding: 1.5rem;
+  background-color: #FFFFFF;
+
+
+  .container-header {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    align-items: center;
+
+    .logo-title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .container-header__img {
+        height: 80px;
+        img {
+          height: 100%;
+          width: 100%;
+        }
+      }
+    .container-header__text {
+      h1 {
+        font-size: 2rem;
+
+        @media (max-width: 767px) {
+         display: none;
+        }
+        line-height: 1.5;
+        margin-bottom: 0 !important;
+        font-weight: 500;
+        color: #00008b;
+      }
+    }
+
+
+
+    }
+  }
+
+
+
+
+  .select-team {
+    mat-form-field {
+      margin-top: 1rem;
+    }
+
+  }
+}
+

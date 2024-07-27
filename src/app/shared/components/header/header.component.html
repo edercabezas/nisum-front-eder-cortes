@@ -1,0 +1,24 @@
+<header>
+  <div class="container-header">
+    <div class="logo-title">
+
+      <div class="container-header__img">
+        <img alt="" src="assets/img/header/pl.png">
+      </div>
+      <div class="container-header__text">
+        <h1>Jugadores por Equipo</h1>
+      </div>
+
+    </div>
+
+    <div class="select-team">
+      <mat-form-field appearance="outline">
+        <mat-select (selectionChange)="returnSelect($event)" [(ngModel)]="optionSelect">
+          @for (team of dataTeam; track team) {
+            <mat-option [value]="team?.team?.id">{{ team?.team?.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+</header>

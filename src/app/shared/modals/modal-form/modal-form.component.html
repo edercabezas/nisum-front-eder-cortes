@@ -1,0 +1,92 @@
+<div class="container-form">
+
+  <div class="container__form__all">
+    <div class="container-form__header">
+      <div class="container-form__header__title">
+        <h1> {{ dataInformation?.title }}</h1>
+      </div>
+    </div>
+
+    <div class="container-form__center"></div>
+
+    <div class="container-form__body">
+
+      <form [formGroup]="registerForm" class="form-login" novalidate>
+        <div class="container__photo__profile">
+          <div class="container__profile__option">
+            <div (click)="selectPhoto()" class="icon__payer">
+              <img [src]="base64String" alt=""/>
+              <span>Foto del jugador</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-lg-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Nombre del jugador</mat-label>
+              <input formControlName="name" matInput placeholder="Nombre del jugador">
+            </mat-form-field>
+            <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched"
+                 class="container-form__body__validation">
+              <div *ngIf="registerForm.get('name')?.errors" class="error">El nombre es requerido.</div>
+            </div>
+          </div>
+          <div class="col-12 col-lg-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Edad del jugador</mat-label>
+              <input formControlName="age" matInput placeholder="Edad del jugador">
+            </mat-form-field>
+            <div *ngIf="registerForm.get('age')?.invalid && registerForm.get('age')?.touched"
+                 class="container-form__body__validation">
+              <div *ngIf="registerForm.get('age')?.errors" class="error">La edad es requerido</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12 col-lg-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Dorsal del jugado</mat-label>
+              <input formControlName="number" matInput placeholder="Dorsal del jugador">
+            </mat-form-field>
+            <div *ngIf="registerForm.get('number')?.invalid && registerForm.get('number')?.touched"
+                 class="container-form__body__validation">
+              <div *ngIf="registerForm.get('number')?.errors" class="error">El numero del dorsal es requerido.</div>
+            </div>
+          </div>
+          <div class="col-12 col-lg-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Posición del jugador</mat-label>
+              <input formControlName="position" matInput placeholder="Posición del jugador">
+            </mat-form-field>
+            <div *ngIf="registerForm.get('position')?.invalid && registerForm.get('position')?.touched"
+                 class="container-form__body__validation">
+              <div *ngIf="registerForm.get('position')?.errors" class="error">La posición es requerido</div>
+            </div>
+          </div>
+        </div>
+
+      </form>
+
+
+      <div class="container-form__body__button">
+        <div class="container-form__body__button__option">
+          <button (click)="onNoClick()" class="button__clear" color="warn"
+                  mat-flat-button>{{ dataInformation?.buttons?.cancel }}
+          </button>
+          <button (click)="openCart()" class="button__send" color="primary"
+                  mat-flat-button>{{ dataInformation?.buttons?.confirm }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <input (change)="upload($event)" accept=".png, .jpg, .jpeg" id="upload-product" style="display: none" type="file">
+
+  </div>
+
+
+</div>
+@if (loading) {
+  <app-loading/>
+}
+

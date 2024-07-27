@@ -1,0 +1,119 @@
+<div class="container-table">
+
+
+  <div class="container-team__name">
+    <div class="container__item">
+      <div class="container-team__logo">
+        <img [src]="dataTeam?.logo" alt="">
+      </div>
+      <div class="container-team__name_label">
+        <span> {{ dataTeam?.name }} </span>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="container-table__header">
+
+    <div class="container-table__header__input">
+      <div class="container__search ">
+
+        <input (keyup)="searchRegister()" [(ngModel)]="inputForm"
+               class="form-control" placeholder="Search.."
+               type="email">
+      </div>
+
+    </div>
+    <div class="container-table__header__button">
+      <button (click)="createNewPlayer(null, false)" class="button__create__new" color="primary" mat-flat-button>Nuevo
+        jugador
+      </button>
+    </div>
+
+  </div>
+
+
+  <div class="container-table__body">
+    <div class="mat-elevation-z8">
+      <table [dataSource]="dataSource" mat-table>
+
+        <ng-container matColumnDef="photo">
+          <th *matHeaderCellDef mat-header-cell> Fotografía</th>
+          <td *matCellDef="let element" mat-cell>
+            <div class="container__img">
+              <img [src]="element.photo" alt="">
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th *matHeaderCellDef mat-header-cell> Nombre</th>
+          <td *matCellDef="let element" mat-cell> {{ element.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="age">
+          <th *matHeaderCellDef mat-header-cell> Edad</th>
+          <td *matCellDef="let element" mat-cell> {{ element.age ? element.age : 'N/A' }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="number">
+          <th *matHeaderCellDef mat-header-cell> Dorsal</th>
+          <td *matCellDef="let element" mat-cell> {{ element.number ? element.number : 'N/A' }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="position">
+          <th *matHeaderCellDef mat-header-cell> Posición</th>
+          <td *matCellDef="let element" mat-cell> {{ element.position }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th *matHeaderCellDef mat-header-cell> Opciones</th>
+          <td *matCellDef="let element; let i = index" mat-cell>
+            <button [matMenuTriggerFor]="menu" mat-icon-button>
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button (click)="createNewPlayer(element, true, i)" mat-menu-item>
+                <mat-icon>edit</mat-icon>
+                <span>Editar</span>
+              </button>
+              <button (click)="openModalDelete(element, i)" mat-menu-item>
+                <mat-icon>delete</mat-icon>
+                <span>Eliminar</span>
+              </button>
+            </mat-menu>
+
+          </td>
+        </ng-container>
+
+
+        <tr *matHeaderRowDef="tableConventionsColumns" mat-header-row></tr>
+
+
+        <tr
+          *matRowDef="let row; columns: tableConventionsColumns; let i = index"
+          [class.table-row-selected]="selectIndexTable === i"
+          mat-row>
+
+        </tr>
+
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                     aria-label="Select page of periodic elements"
+                     showFirstLastButtons>
+      </mat-paginator>
+    </div>
+
+  </div>
+
+
+</div>
+
+
+
+
+@if (loading) {
+  <app-loading/>
+}
