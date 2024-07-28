@@ -65,18 +65,18 @@ export class ShowInfoComponent implements OnInit, OnChanges {
   }
 
   getDataRegister(): void {
-    this.crud.removeStorage();
+
     this.loading = true;
     this.api?.readData(this.optionTeam)?.then((res: any) => {
 
       const dataResponse = res.response[0]?.players.sort((a: any, b: any) => b.id - a.id);
       this.dataTeam = res.response[0]?.team;
 
-      console.log(this.dataTeam)
+      this.crud?.removeStorage();
 
       this.setDataStorage(JSON.stringify(dataResponse))
       this.getPlayerStorage();
-      this.crud.showProductCart();
+      this.crud.showPlayerRegister();
 
     }).catch(() => {
 

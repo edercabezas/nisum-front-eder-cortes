@@ -6,18 +6,18 @@ import {BehaviorSubject} from "rxjs";
   providedIn: 'root'
 })
 export class CrudService {
-  carritoAnterior: Array<any>;
-  addProductoCarrito: Array<any>;
-  cartProductCount: any;
-  private resulCard = new BehaviorSubject(null);
-  currentMessage = this.resulCard.asObservable();
+  playerInit: Array<any>;
+  addPlayerRegister: Array<any>;
+  playerRegisterCount: any;
+  private resultPlayer = new BehaviorSubject(null);
+  currentMessage = this.resultPlayer.asObservable();
 
   constructor(private alertS: AlertService) {
 
-    this.showProductCart();
-    this.carritoAnterior = [];
-    this.addProductoCarrito = [];
-    this.cartProductCount = {};
+    this.showPlayerRegister();
+    this.playerInit = [];
+    this.addPlayerRegister = [];
+    this.playerRegisterCount = {};
     this.calculateProduct();
   }
 
@@ -30,18 +30,18 @@ export class CrudService {
     let dataParse = JSON.parse(dataCart);
     dataParse = dataParse.sort((a: any, b: any) => b.id - a.id)
 
-    this.carritoAnterior =  dataParse
-    this.addProductoCarrito.push(data);
+    this.playerInit =  dataParse
+    this.addPlayerRegister.push(data);
 
-    if (this.addProductoCarrito) {
+    if (this.addPlayerRegister) {
 
-      if (!this.carritoAnterior) {
-        this.carritoAnterior = [];
+      if (!this.playerInit) {
+        this.playerInit = [];
       }
 
 
-      this.carritoAnterior.push(data);
-      localStorage.setItem('player', JSON.stringify(this.carritoAnterior));
+      this.playerInit.push(data);
+      localStorage.setItem('player', JSON.stringify(this.playerInit));
 
 
       const dataParse: any = localStorage.getItem('player');
@@ -57,8 +57,8 @@ export class CrudService {
       this.alertS.showToasterError('Acabas de agregar este producto al carrito');
     }
 
-    this.addProductoCarrito = [];
-    this.showProductCart();
+    this.addPlayerRegister = [];
+    this.showPlayerRegister();
 
   }
 
@@ -82,54 +82,54 @@ export class CrudService {
 
     this.alertS.showToasterFull('Registro actualizado exitosamente');
 
-    this.showProductCart();
+    this.showPlayerRegister();
   }
 
-  public showProductCart(): void {
+  public showPlayerRegister(): void {
     let data: any;
 
     if (typeof window !== 'undefined') {
       data = localStorage.getItem('player');
-      this.resulCard.next(JSON.parse(data));
+      this.resultPlayer.next(JSON.parse(data));
     }
   }
 
 
   public deletePlayer(data: any, index: number): void {
-    let carrito: any;
-    let dataCarrito: any;
+    let player: any;
+    let dataPlayer: any;
 
-    carrito = localStorage.getItem('player');
-    if (carrito) {
-      dataCarrito = JSON.parse(carrito);
+    player = localStorage.getItem('player');
+    if (player) {
+      dataPlayer = JSON.parse(player);
     }
 
-    dataCarrito.splice(index, 1);
+    dataPlayer.splice(index, 1);
 
-    localStorage.setItem('player', JSON.stringify(dataCarrito));
+    localStorage.setItem('player', JSON.stringify(dataPlayer));
 
     this.alertS.showToasterFull('Registro Eliminado exitosamente');
-    this.showProductCart();
+    this.showPlayerRegister();
   }
 
   public removeStorage(): void {
     if (typeof window !== 'undefined') {
       localStorage.removeItem('player');
     }
-    this.showProductCart();
+    this.showPlayerRegister();
 
   }
 
 
   calculateProduct(): any {
     this.currentMessage.subscribe((response: any) => {
-      this.cartProductCount = {};
+      this.playerRegisterCount = {};
       if (!response) {
         return;
       }
 
       response.forEach((res: any, index: number) => {
-        this.cartProductCount[res.id] = {cantidad: res.cantidad, index};
+        this.playerRegisterCount[res.id] = {cantidad: res.cantidad, index};
 
       });
     });
