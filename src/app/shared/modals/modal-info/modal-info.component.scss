@@ -1,37 +1,41 @@
 .container-modal__information {
-  padding: 70px;
+  padding: 24px;
   @media screen and (max-width: 667px) {
     padding: 40px;
 
   }
 
   h3 {
-    font-size: 26px;
+    font-size: 18px;
     font-weight: 400;
     text-align: center;
+    margin: 0 !important;
   }
 }
 
 
 .container-form__body__button__option {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding-left: 32px;
-  padding-right: 32px;
+  padding: 24px;
   gap: 24px;
+
   @media screen and (max-width: 667px) {
     padding-top: 20px;
-    padding-left: 16px;
-    padding-right: 16px;
     gap: 12px;
+    flex-direction: column;
 
   }
 
 
+
   button {
-    width: 100%;
-    padding: 32px;
+    @media screen and (max-width: 667px) {
+      width: 100%;
+    }
+
+    padding: 16px 24px;
     color: #00008b;
     font-size: 18px;
     font-weight: 500;

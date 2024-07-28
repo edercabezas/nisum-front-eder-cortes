@@ -14,9 +14,12 @@ export class ApiService {
   constructor(private http: HttpClient) {
   }
 
-
-  async readData(tema: any): Promise<any> {
-    const URL = `https://api-football-v1.p.rapidapi.com/v3/players/squads?team=${tema}`;
+  /**
+   * Traer los quipos por liga y año
+   * @param league
+   */
+  async readTeam(league: number = 39): Promise<any> {
+    const URL = `https://api-football-v1.p.rapidapi.com/v3/teams?league=${league}&season=2024`;
     return new Promise((resolve, reject) => {
       return this.http?.get(`${URL}`, {headers: this.headers}).subscribe((response: any) => {
         return resolve(response);
@@ -24,8 +27,12 @@ export class ApiService {
     });
   }
 
-  async regetTeam(league: number = 39): Promise<any> {
-    const URL = `https://api-football-v1.p.rapidapi.com/v3/teams?league=${league}&season=2024`;
+  /**
+   * Listar los jugadores por equipo
+   * @param tema
+   */
+  async readData(tema: any): Promise<any> {
+    const URL = `https://api-football-v1.p.rapidapi.com/v3/players/squads?team=${tema}`;
     return new Promise((resolve, reject) => {
       return this.http?.get(`${URL}`, {headers: this.headers}).subscribe((response: any) => {
         return resolve(response);

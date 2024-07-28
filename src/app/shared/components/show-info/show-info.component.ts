@@ -60,10 +60,16 @@ export class ShowInfoComponent implements OnInit, OnChanges {
     this._customerTableColumns();
   }
 
+  /**
+   * Cada vez que haya un cambio está este metodo escuchando
+   */
   ngOnChanges(): void {
     this.getDataRegister();
   }
 
+  /**
+   * Consumo del servicio de listado de jugadores por cada equipo
+   */
   getDataRegister(): void {
 
     this.loading = true;
@@ -89,7 +95,9 @@ export class ShowInfoComponent implements OnInit, OnChanges {
     })
   }
 
-
+  /**
+   * Listar la información del equipo desde el storage
+   */
   getPlayerStorage(): void {
     this.crud?.currentMessage?.subscribe((response: any) => {
       if (response && response.length > 0) {
@@ -101,10 +109,15 @@ export class ShowInfoComponent implements OnInit, OnChanges {
     });
   }
 
+  /**
+   * Abrir el modal de confirmacion para la eliminacion del registro
+   * @param element
+   * @param index
+   */
   openModalDelete(element: any, index: number): void {
     const dialog: any = this.dialog.open(ModalInfoComponent, {
-      width: '700px',
-      height: '350px',
+      width: '400px',
+      height: 'auto',
       data: {
         title: `Esta seguro de eliminar el registro de : ${element?.name}?`,
         buttons: {
@@ -124,7 +137,9 @@ export class ShowInfoComponent implements OnInit, OnChanges {
     });
   }
 
-
+  /**
+   * Buscar jugador por el nombre
+   */
   searchRegister(): void {
 
     let dataFilter = this.dataSource.filteredData
@@ -140,11 +155,16 @@ export class ShowInfoComponent implements OnInit, OnChanges {
     }
   }
 
-
+  /**
+   * Abrir el modal de creación y edición para un jugador
+   * @param element
+   * @param option
+   * @param index
+   */
   createNewPlayer(element: any, option: boolean, index?: number): void {
     this.dialog.open(ModalFormComponent, {
       width: '800px',
-      height: '670px',
+      height: 'auto',
       data: {
         title: option ? `Actualizar Jugador` : `Registrar nuevo Jugador`,
         option: option,
@@ -158,12 +178,21 @@ export class ShowInfoComponent implements OnInit, OnChanges {
     });
   }
 
+  /**
+   * Guardar la información de los jugadores cuando recargo la pagína
+   * @param data
+   * @private
+   */
   private setDataStorage(data: any): void {
     if (typeof window !== 'undefined') {
       localStorage.setItem('player', data);
     }
   }
 
+  /**
+   * Inicializar los identificadores de cada columna en la tabla
+   * @private
+   */
   private _customerTableColumns(): void {
     this.tableConventionsColumns = [
       'photo',

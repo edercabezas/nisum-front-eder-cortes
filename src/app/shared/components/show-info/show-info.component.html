@@ -22,14 +22,14 @@
       <div class="container__search ">
 
         <input (keyup)="searchRegister()" [(ngModel)]="inputForm"
-               class="form-control" placeholder="Search.."
+               class="form-control" placeholder="Buscar.."
                type="email">
       </div>
 
     </div>
     <div class="container-table__header__button">
-      <button (click)="createNewPlayer(null, false)" class="button__create__new" color="primary" mat-flat-button>Nuevo
-        jugador
+      <button (click)="createNewPlayer(null, false)"
+              class="button__create__new" color="primary" mat-flat-button>Crear jugador
       </button>
     </div>
 
@@ -76,7 +76,7 @@
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-              <button (click)="createNewPlayer(element, true, i)" mat-menu-item>
+              <button (click)="createNewPlayer(element, true, i)" mat-menu-item >
                 <mat-icon>edit</mat-icon>
                 <span>Editar</span>
               </button>

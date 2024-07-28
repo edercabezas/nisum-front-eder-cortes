@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit {
   }
 
   getTeam(): void {
-    this.api?.regetTeam(this.league)?.then((res: any) => {
+    this.api?.readTeam(this.league)?.then((res: any) => {
       this.dataTeam = res.response;
     }).catch((error: any) => {
 

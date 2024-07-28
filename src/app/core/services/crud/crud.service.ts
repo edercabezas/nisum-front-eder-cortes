@@ -18,10 +18,13 @@ export class CrudService {
     this.playerInit = [];
     this.addPlayerRegister = [];
     this.playerRegisterCount = {};
-    this.calculateProduct();
   }
 
 
+  /**
+   * Agregar un nuevo registro en el Storage
+   * @param data
+   */
   public addPlayer(data: any): void {
     let dataCart: any;
     dataCart = localStorage.getItem('player');
@@ -62,11 +65,16 @@ export class CrudService {
 
   }
 
+  /**
+   * Editar un registro en el Storage
+   * @param data
+   * @param index
+   */
   public updatePlayer(data: any, index: number): void {
 
     let items: any;
 
-    const players = localStorage.getItem('player');
+    const players: any = localStorage.getItem('player');
 
     if (players) {
       items = JSON.parse(players);
@@ -85,6 +93,9 @@ export class CrudService {
     this.showPlayerRegister();
   }
 
+  /**
+   * Consultar los datos en el storage cada vez que haya una acción como editar, eliminar, agregar
+   */
   public showPlayerRegister(): void {
     let data: any;
 
@@ -94,6 +105,11 @@ export class CrudService {
     }
   }
 
+  /**
+   * Eliminar un registro del storage
+   * @param data
+   * @param index
+   */
 
   public deletePlayer(data: any, index: number): void {
     let player: any;
@@ -112,6 +128,9 @@ export class CrudService {
     this.showPlayerRegister();
   }
 
+  /**
+   * Eliminar todos los registros del storage
+   */
   public removeStorage(): void {
     if (typeof window !== 'undefined') {
       localStorage.removeItem('player');
@@ -120,20 +139,5 @@ export class CrudService {
 
   }
 
-
-  calculateProduct(): any {
-    this.currentMessage.subscribe((response: any) => {
-      this.playerRegisterCount = {};
-      if (!response) {
-        return;
-      }
-
-      response.forEach((res: any, index: number) => {
-        this.playerRegisterCount[res.id] = {cantidad: res.cantidad, index};
-
-      });
-    });
-
-  }
 
 }

@@ -78,7 +78,6 @@ export class ModalFormComponent implements OnInit{
       const reader = new FileReader();
       reader.onload = () => {
         this.base64String = reader.result;
-        console.log(this.base64String)
       };
       reader.readAsDataURL(file);
     }
@@ -105,8 +104,8 @@ export class ModalFormComponent implements OnInit{
     }
     const message: any = this.dataInformation.option ? 'Quiere editar el registro ' : 'Esta seguro que quiere crear este registro '
     const dialog = this.dialog?.open(ModalInfoComponent, {
-      width: '700px',
-      height: '350px',
+      width: '400px',
+      height: 'auto',
       data: {
         title: `${message} : ${this.registerForm?.controls['name']?.value} ?`,
         buttons: {
