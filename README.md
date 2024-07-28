@@ -1,27 +1,57 @@
 # FrontNisum
+Este proyecto está corriendo sobre la version de Angular 17
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.5.
+Requisitos para ejecutar este proyecto
 
-## Development server
+# 1 Nodejs 
+# 2 npm
+# 3 Angular
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Clonar el proyecto desde GitHub
 
-## Code scaffolding
+Ejecutar `git clone https://github.com/edercabezas/nisum-front-eder-cortes`. rama develop
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Instalación de dependencia
 
-## Build
+Navegar a la carpeta del proyecto
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Ejecutar `npm install o npm ci` para instalar las dependencias
 
-## Running unit tests
+## Ejecutar el proyecto
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Ejecutar `ng serve` este comando ejecutar la app local en esta url `http://localhost:4200/`. Copiar y pegar en el navegador
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Pruebas unitarias 
 
-## Further help
+Ejecutar `ng test` para ver el estado de cada uno de los componentes las pruebas unitarias no quedaron al 100% peró garanticé que los componentes no generaran ningún tipo de error
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Construir la app para despliegue en un servidor 
+
+Ejecutar `ng build` Este construye la app lista para el despliegue en   `dist/` .
+
+## Funcionalidad de la aplicación
+
+Dentro de app hay tres carpetas `core, features, shared`
+#Core Para servicios singleton y proveedores de aplicación a nivel global.
+#feature. Para agrupar funcionalidades relacionadas específicas a características.
+#shared. Para componentes, directivas y pipes reutilizables usados en múltiples módulos.
+
+
+## Api usadas
+En este casos e usaron dos Apis de `https://rapidapi.com/hub`
+
+#1 Para listar los equipos de futbol `https://api-football-v1.p.rapidapi.com/v3/teams?league=39&season=2024` Esta recibe dos parámetros la liga y el año
+#2 Para listar los jugadores basándome en el equipo seleccionado  `https://api-football-v1.p.rapidapi.com/v3/players/squads?team=39` recibe como parámetro tram que es el ID del equipo y devuelve los jugadores
+
+Este consumo se hace en el servicio ubicado en `src/app/core/services/api/api.service.ts` 
+
+
+## Crud en la app
+
+Para esto se crea el servicio `src/app/core/services/crud/crud.service.ts` el cual están todas las acciones requeridas `listar, agregar, editar, eliminar`. Todo esto se hace con datos del storage
+
+
+
+

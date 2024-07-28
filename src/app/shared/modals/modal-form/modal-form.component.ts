@@ -191,7 +191,6 @@ export class ModalFormComponent implements OnInit{
    */
   public getIDPlayer(): any {
 
-
     let getDay = new Date().getDay().toString();
     const constGetMonth = new Date().getMonth() + 1;
     let getHours = new Date().getHours().toString();
@@ -199,13 +198,10 @@ export class ModalFormComponent implements OnInit{
     const getFullYear =new Date().getFullYear().toString();
     const getSegundos =new Date().getMilliseconds();
     let getMonth = constGetMonth.toString()
-
-    const dataFinish = `${getDay}${getMonth}${getFullYear}${getHours}${getMinutes}${getSegundos}`;
+    const dataFinish = `${getFullYear}${getDay}${getMonth}${getHours}${getMinutes}${getSegundos}`;
     this.codePlayer = JSON.parse(dataFinish);
 
-    return  JSON.parse(dataFinish);
-
-
+    return  this.codePlayer;
 
   }
 
